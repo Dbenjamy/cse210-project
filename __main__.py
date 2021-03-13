@@ -8,11 +8,10 @@ from game.move_actors_action import MoveActorsAction
 from game.arcade_input_service import ArcadeInputService
 from game.arcade_output_service import ArcadeOutputService
 
-from game.paddle import Paddle
-from game.brick import Brick
-from game.ball import Ball
+from game.car import Car
+from game.dirt import Dirt
 
-from game.batter import Batter
+from game.director import Director
 import arcade
 
 def main():
@@ -20,25 +19,22 @@ def main():
     # create the cast {key: tag, value: list}
     cast = {}
 
-    paddle = Paddle()
-    cast["paddle"] = [paddle]
+    car = Car()
+    cast["car"] = [car]
 
-    ball = Ball()
-    cast["balls"] = [ball]
+    dirt = Dirt()
+    for i in range(2):
+        cast["Dirt"].append(dirt)
 
-    for i in range(constants.NUM_BALLS):
-        # TODO: Create a ball here and add it to the list of balls in the cast
-        pass
-
-    cast["bricks"] = []
-    for x in range(constants.BRICK_WIDTH * 2,
-                constants.MAX_X - constants.BRICK_WIDTH * 2,
-                constants.BRICK_WIDTH + constants.BRICK_SPACE):
-        for y in range(int(constants.MAX_Y * .7),
-                    int(constants.MAX_Y * .9),
-                    constants.BRICK_HEIGHT + constants.BRICK_SPACE):
-            brick = Brick(x, y)
-            cast["bricks"].append(brick)
+    # cast["bricks"] = []
+    # for x in range(constants.BRICK_WIDTH * 2,
+    #             constants.MAX_X - constants.BRICK_WIDTH * 2,
+    #             constants.BRICK_WIDTH + constants.BRICK_SPACE):
+    #     for y in range(int(constants.MAX_Y * .7),
+    #                 int(constants.MAX_Y * .9),
+    #                 constants.BRICK_HEIGHT + constants.BRICK_SPACE):
+    #         brick = Brick(x, y)
+    #         cast["bricks"].append(brick)
     
 
 
@@ -58,8 +54,8 @@ def main():
     script["output"] = [draw_actors_action]
 
     # start the game
-    batter = Batter(cast, script, input_service)
-    batter.setup()
+    director = Director(cast, script, input_service)
+    director.setup()
     arcade.run()
 
 
