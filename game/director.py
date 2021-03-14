@@ -1,11 +1,11 @@
 import arcade
 from game import constants
 
-class Batter(arcade.Window):
+class Director(arcade.Window):
     def __init__(self, cast, script, input_service):
         """Initialize the game
         """
-        super().__init__(constants.MAX_X, constants.MAX_Y, "Batter")
+        super().__init__(constants.MAX_X, constants.MAX_Y, "The Game")
 
         self._cast = cast
         self._script = script

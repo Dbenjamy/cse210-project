@@ -1,6 +1,7 @@
 import random
 from game import constants
 from game.action import Action
+from game.dirt import Dirt
 
 class HandleCollisionsAction(Action):
     """A code template for handling collisions. The responsibility of this class of objects is to update the game state when actors collide.
@@ -8,44 +9,57 @@ class HandleCollisionsAction(Action):
     Stereotype:
         Controller
     """
-
+    
     def execute(self, cast):
         """Executes the action using the given actors.
 
         Args:
             cast (dict): The game actors {key: tag, value: list}.
         """
-        paddle = cast["paddle"][0]
+        car = cast["car"][0]
 
-        balls_to_remove = []
+        if cast["dirt_top"][0].center_x <= constants.MAX_X / 2 * -1:
+            cast["dirt_top"].pop(0)
+            cast["dirt_bottom"].pop(0)
+            self._add_track(cast)
 
-        for ball in cast["balls"]:
-            self._handle_wall_bounce(ball)
-            self._handle_paddle_bounce(ball, paddle)
 
-            bricks = cast["bricks"]
-            self._handle_brick_collision(ball, bricks)
+        dirt_slow = False
+        for dirt in cast["dirt_top"]:
+            if dirt_slow:
+                break
+            if self._handle_car_collision(car,dirt):
+                dirt_slow = True
 
-            if constants.BALLS_CAN_DIE and self._is_off_screen(ball):
-                balls_to_remove.append(ball)
+        for dirt in cast["dirt_bottom"]:
+            if dirt_slow:
+                break
+            if self._handle_car_collision(car,dirt):
+                dirt_slow = True
+                break
 
-        for ball in balls_to_remove:
-            cast["balls"].remove(ball)
+        if dirt_slow:
+            for dirt in cast["dirt_top"]:
+                dirt.change_x = -1
+            for dirt in cast["dirt_bottom"]:
+                dirt.change_x = -1
+        elif not dirt_slow:
+            for dirt in cast["dirt_top"]:
+                dirt.change_x = -2
+            for dirt in cast["dirt_bottom"]:
+                dirt.change_x = -2
 
-    def _handle_wall_bounce(self, ball):
-        ball_x = ball.center_x
-        ball_y = ball.center_y
 
-        # Check for bounce on walls
-        if ball_x <= 0 or ball_x >= constants.MAX_X:
-            ball.bounce_vertical()
 
-        if ball_y >= constants.MAX_Y:
-            ball.bounce_horizontal()
-        
-        if not constants.BALLS_CAN_DIE and ball_y <= 0:
-            ball.bounce_horizontal()
-    
+    def _add_track(self,cast):
+        cast["dirt_top"].append(Dirt(constants.DIRT_TOP))
+        cast["dirt_top"][1].center_x = cast["dirt_top"][0].center_x + constants.MAX_X
+        cast["dirt_bottom"].append(Dirt(constants.DIRT_BOTTOM))
+        cast["dirt_bottom"][1].center_x = cast["dirt_bottom"][0].center_x + constants.MAX_X
+
+    def _handle_car_collision(self,car,dirt):
+        return car.collides_with_sprite(dirt)
+
     def _handle_paddle_bounce(self, ball, paddle):
         # This makes use of the `Sprite` functionality
         if paddle.collides_with_sprite(ball):

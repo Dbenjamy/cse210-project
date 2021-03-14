@@ -26,15 +26,15 @@ class ControlActorsAction(Action):
         Args:
             cast (dict): The game actors {key: tag, value: list}.
         """
-        direction = self._input_service.get_direction().scale(constants.PADDLE_MOVE_SCALE)
-        paddle = cast["paddle"][0] # there's only one in the cast
-        # paddle.change_y = direction.get_y()
-        if paddle.center_x >= constants.MAX_X- paddle.width/2:
-            paddle.center_x = constants.MAX_X - paddle.width/2 -1
-            paddle.change_x = 0
-        elif paddle.center_x <= 0+paddle.width/2:
-            paddle.center_x = 1+paddle.width/2
-            paddle.change_x = 0
+        direction = self._input_service.get_direction().scale(constants.CAR_MOVE_SCALE)
+        car = cast["car"][0] # there's only one in the cast
+        # car.change_y = direction.get_y()
+        if car.center_x >= constants.MAX_X- car.width/2:
+            car.center_x = constants.MAX_X - car.width/2 -1
+            car.change_x = 0
+        elif car.center_x <= 0+car.width/2:
+            car.center_x = 1+car.width/2
+            car.change_x = 0
         else: 
-            paddle.change_x = direction.get_x()
+            car.change_x = direction.get_x()
 

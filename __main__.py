@@ -22,20 +22,21 @@ def main():
     car = Car()
     cast["car"] = [car]
 
-    dirt = Dirt()
-    for i in range(2):
-        cast["Dirt"].append(dirt)
+    cast["dirt_top"] = []
+    cast["dirt_bottom"] = []
+    cast["dirt_top"].append(Dirt(constants.DIRT_TOP))
+    cast["dirt_top"].append(Dirt(constants.DIRT_TOP))
+    cast["dirt_bottom"].append(Dirt(constants.DIRT_BOTTOM))
+    cast["dirt_bottom"].append(Dirt(constants.DIRT_BOTTOM))
 
-    # cast["bricks"] = []
-    # for x in range(constants.BRICK_WIDTH * 2,
-    #             constants.MAX_X - constants.BRICK_WIDTH * 2,
-    #             constants.BRICK_WIDTH + constants.BRICK_SPACE):
-    #     for y in range(int(constants.MAX_Y * .7),
-    #                 int(constants.MAX_Y * .9),
-    #                 constants.BRICK_HEIGHT + constants.BRICK_SPACE):
-    #         brick = Brick(x, y)
-    #         cast["bricks"].append(brick)
-    
+
+    cast["dirt_top"][0].center_y = constants.MAX_Y / 25
+    cast["dirt_bottom"][0].center_y = 0 + constants.MAX_Y / 25
+
+    cast["dirt_top"][1].center_x += constants.MAX_X
+    cast["dirt_top"][1].center_y = constants.MAX_Y / 25
+    cast["dirt_bottom"][1].center_x += constants.MAX_X
+    cast["dirt_bottom"][1].center_y = 0 + constants.MAX_Y / 25
 
 
     # create the script {key: tag, value: list}
