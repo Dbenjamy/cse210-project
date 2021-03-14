@@ -45,38 +45,19 @@ class HandleCollisionsAction(Action):
                 dirt.change_x = -1
         elif not dirt_slow:
             for dirt in cast["dirt_top"]:
-                dirt.change_x = -2
+                dirt.change_x = -5
             for dirt in cast["dirt_bottom"]:
-                dirt.change_x = -2
+                dirt.change_x = -5
 
 
 
     def _add_track(self,cast):
         cast["dirt_top"].append(Dirt(constants.DIRT_TOP))
         cast["dirt_top"][1].center_x = cast["dirt_top"][0].center_x + constants.MAX_X
+        cast["dirt_top"][1].center_y = cast["dirt_top"][0].center_y
         cast["dirt_bottom"].append(Dirt(constants.DIRT_BOTTOM))
         cast["dirt_bottom"][1].center_x = cast["dirt_bottom"][0].center_x + constants.MAX_X
+        cast["dirt_bottom"][1].center_y = cast["dirt_bottom"][0].center_y
 
     def _handle_car_collision(self,car,dirt):
         return car.collides_with_sprite(dirt)
-
-    def _handle_paddle_bounce(self, ball, paddle):
-        # This makes use of the `Sprite` functionality
-        if paddle.collides_with_sprite(ball):
-            # Ball and paddle collide!
-            ball.bounce_horizontal()
-
-    def _handle_brick_collision(self, ball, bricks):
-        brick_to_remove = None
-
-        for brick in bricks:
-            # This makes use of the `Sprite` functionality
-            if ball.collides_with_sprite(brick):
-                ball.bounce_horizontal()
-                brick_to_remove = brick
-        
-        if brick_to_remove != None:
-            bricks.remove(brick_to_remove)
-
-    def _is_off_screen(self, ball):
-        return ball.center_y < 0

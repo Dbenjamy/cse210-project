@@ -30,17 +30,9 @@ class DrawActorsAction(Action):
         self._output_service.clear_screen()
 
 
-        # for dirt in cast["top_dirt"]:
-        #     self._output_service.draw_actor(dirt)
-        # for dirt in cast["bottom_dirt"]:
-        #     self._output_service.draw_actor(dirt)
-        
-
-
-        car = cast["car"][0] # there's only one
-        self._output_service.draw_actor(car)
         self._output_service.draw_actors(cast["dirt_top"])
         self._output_service.draw_actors(cast["dirt_bottom"])
+        self._output_service.draw_actor(cast["car"][0])
 
         self._output_service.flush_buffer()
 

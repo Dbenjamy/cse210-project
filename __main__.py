@@ -30,13 +30,13 @@ def main():
     cast["dirt_bottom"].append(Dirt(constants.DIRT_BOTTOM))
 
 
-    cast["dirt_top"][0].center_y = constants.MAX_Y / 25
-    cast["dirt_bottom"][0].center_y = 0 + constants.MAX_Y / 25
+    cast["dirt_top"][0].center_y = constants.MAX_Y + 175
+    cast["dirt_bottom"][0].center_y = -175
 
     cast["dirt_top"][1].center_x += constants.MAX_X
-    cast["dirt_top"][1].center_y = constants.MAX_Y / 25
+    cast["dirt_top"][1].center_y = constants.MAX_Y
     cast["dirt_bottom"][1].center_x += constants.MAX_X
-    cast["dirt_bottom"][1].center_y = 0 + constants.MAX_Y / 25
+    cast["dirt_bottom"][1].center_y = -175
 
 
     # create the script {key: tag, value: list}
