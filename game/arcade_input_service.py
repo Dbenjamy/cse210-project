@@ -33,10 +33,13 @@ class ArcadeInputService:
         x = 0
         y = 0
 
-        if arcade.key.LEFT in self._keys:
-            x = -1
-        elif arcade.key.RIGHT in self._keys:
-            x = 1
+        # EDIT: Car will not move forward and backward. Removed funcionality for
+        # letting user change x value
+        
+        #if arcade.key.LEFT in self._keys:
+            #x = -1
+        #elif arcade.key.RIGHT in self._keys:
+            #x = 1
 
         if arcade.key.UP in self._keys:
             y = 1
