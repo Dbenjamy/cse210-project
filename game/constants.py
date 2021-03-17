@@ -14,5 +14,5 @@ CAR_MOVE_SCALE = 10
 DIRT_TOP = DIRROOT.joinpath("images/DIRT_IMAGES/top1.png")
 DIRT_BOTTOM = DIRROOT.joinpath("images/DIRT_IMAGES/bottom1.png")
 
-
+GAME_TITLE = "RIP PAUL WALKER"
 CAR_IMAGE = DIRROOT.joinpath("images/paddle-0.png")
