@@ -28,7 +28,7 @@ class ControlActorsAction(Action):
         """
         direction = self._input_service.get_direction().scale(constants.CAR_MOVE_SCALE)
         car = cast["car"][0] # there's only one in the cast
-        # car.change_y = direction.get_y()
+        car.change_y = direction.get_y()
         if car.center_x >= constants.MAX_X- car.width/2:
             car.center_x = constants.MAX_X - car.width/2 -1
             car.change_x = 0
