@@ -24,17 +24,17 @@ def main():
 
     cast["dirt_top"] = []
     cast["dirt_bottom"] = []
-    cast["dirt_top"].append(Dirt(constants.DIRT_TOP))
-    cast["dirt_top"].append(Dirt(constants.DIRT_TOP))
-    cast["dirt_bottom"].append(Dirt(constants.DIRT_BOTTOM))
-    cast["dirt_bottom"].append(Dirt(constants.DIRT_BOTTOM))
 
+    cast["dirt_top"].append(Dirt(constants.DIRT_TOP))
+    cast["dirt_top"].append(Dirt(constants.DIRT_TOP))
+    cast["dirt_bottom"].append(Dirt(constants.DIRT_BOTTOM))
+    cast["dirt_bottom"].append(Dirt(constants.DIRT_BOTTOM))
 
     cast["dirt_top"][0].center_y = constants.MAX_Y + 175
     cast["dirt_bottom"][0].center_y = -175
 
     cast["dirt_top"][1].center_x += constants.MAX_X
-    cast["dirt_top"][1].center_y = constants.MAX_Y
+    cast["dirt_top"][1].center_y = constants.MAX_Y + 175
     cast["dirt_bottom"][1].center_x += constants.MAX_X
     cast["dirt_bottom"][1].center_y = -175
 

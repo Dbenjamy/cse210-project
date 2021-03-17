@@ -21,7 +21,7 @@ class HandleCollisionsAction(Action):
         if cast["dirt_top"][0].center_x <= constants.MAX_X / 2 * -1:
             cast["dirt_top"].pop(0)
             cast["dirt_bottom"].pop(0)
-            self._add_track(cast)
+            self.add_track(cast)
 
 
         dirt_slow = False
@@ -51,7 +51,7 @@ class HandleCollisionsAction(Action):
 
 
 
-    def _add_track(self,cast):
+    def add_track(self,cast):
         cast["dirt_top"].append(Dirt(constants.DIRT_TOP))
         cast["dirt_top"][1].center_x = cast["dirt_top"][0].center_x + constants.MAX_X
         cast["dirt_top"][1].center_y = cast["dirt_top"][0].center_y
