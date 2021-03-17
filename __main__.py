@@ -7,6 +7,7 @@ from game.handle_collisions_action import HandleCollisionsAction
 from game.move_actors_action import MoveActorsAction
 from game.arcade_input_service import ArcadeInputService
 from game.arcade_output_service import ArcadeOutputService
+from game.menu import main_menu
 
 from game.car import Car
 from game.dirt import Dirt
@@ -56,11 +57,10 @@ def main():
 
     # start the game
     window = arcade.Window(constants.MAX_X,constants.MAX_Y,constants.GAME_TITLE)
-    start_view = Director(cast,script,input_service)
+    menu = main_menu()
+    menu.parameters(cast, script, input_service)
+    start_view = menu
     window.show_view(start_view)
-    start_view.setup()
-    # director = Director(cast, script, input_service)
-    # director.setup()
     arcade.run()
 
 
