@@ -55,8 +55,12 @@ def main():
     script["output"] = [draw_actors_action]
 
     # start the game
-    director = Director(cast, script, input_service)
-    director.setup()
+    window = arcade.Window(constants.MAX_X,constants.MAX_Y,constants.GAME_TITLE)
+    start_view = Director(cast,script,input_service)
+    window.show_view(start_view)
+    start_view.setup()
+    # director = Director(cast, script, input_service)
+    # director.setup()
     arcade.run()
 
 
