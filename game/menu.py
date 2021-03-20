@@ -3,7 +3,7 @@ from game import constants
 from game.director import Director
 
 class main_menu(arcade.View):
-    def parameters(self, cast, script, input_service):
+    def set_parameter(self, cast, script, input_service):
         self._cast = cast
         self._script = script
         self._input_service = input_service
