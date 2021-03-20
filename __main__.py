@@ -58,7 +58,7 @@ def main():
     # start the game
     window = arcade.Window(constants.MAX_X,constants.MAX_Y,constants.GAME_TITLE)
     menu = main_menu()
-    menu.parameters(cast, script, input_service)
+    menu.set_parameters(cast, script, input_service)
     start_view = menu
     window.show_view(start_view)
     arcade.run()
