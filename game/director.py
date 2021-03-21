@@ -1,4 +1,5 @@
 import arcade
+import time
 from game import constants
 
 class Director(arcade.View):
@@ -10,9 +11,13 @@ class Director(arcade.View):
         self._cast = cast
         self._script = script
         self._input_service = input_service
+        self.slow_music = None
+        self._sound_dictionary = {'engine':':resources:music/funkyrobot.mp3','slow_engine':':resources:sounds/gameover2.wav'}
 
     def setup(self):
         arcade.set_background_color(arcade.color.BLACK)
+        self.play_song()
+
 
     def on_update(self, delta_time):
         self._cue_action("update")
@@ -36,3 +41,12 @@ class Director(arcade.View):
         """ 
         for action in self._script[tag]:
             action.execute(self._cast)
+            
+    def play_song(self):
+        """ Play the song. """
+        # Stop what is currently playing.
+        print('This works')
+        if self.slow_music:
+            self.slow_music.stop()
+        self.slow_music = arcade.Sound(self._sound_dictionary['engine'], streaming = True)
+        self.slow_music.play(volume=1)

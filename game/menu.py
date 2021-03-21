@@ -30,5 +30,9 @@ class main_menu(arcade.View):
         game_view = Director(self._cast, self._script, self._input_service)
         game_view.setup()
         self.window.show_view(game_view)
+        self.start_sound = arcade.load_sound(":resources:sounds/coin1.wav")
+        arcade.play_sound(self.start_sound)
+
+
 
     
