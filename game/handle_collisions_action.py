@@ -21,43 +21,33 @@ class HandleCollisionsAction(Action):
         if cast["dirt_top"][0].center_x <= constants.MAX_X / 2 * -1:
             cast["dirt_top"].pop(0)
             cast["dirt_bottom"].pop(0)
-            self.add_track(cast)
+            cast["dirt_top"][0].add_track(cast)
+    
 
-
-        dirt_slow = False
+        go_slow = False
         for dirt in cast["dirt_top"]:
-            if dirt_slow:
+            if go_slow:
                 break
             if self._handle_car_collision(car,dirt):
-                dirt_slow = True
+                go_slow = True
 
         for dirt in cast["dirt_bottom"]:
-            if dirt_slow:
+            if go_slow:
                 break
             if self._handle_car_collision(car,dirt):
-                dirt_slow = True
+                go_slow = True
                 break
 
-        if dirt_slow:
+        if go_slow:
             for dirt in cast["dirt_top"]:
                 dirt.change_x = -1
             for dirt in cast["dirt_bottom"]:
                 dirt.change_x = -1
-        elif not dirt_slow:
+        elif not go_slow:
             for dirt in cast["dirt_top"]:
                 dirt.change_x = -5
             for dirt in cast["dirt_bottom"]:
                 dirt.change_x = -5
 
-
-
-    def add_track(self,cast):
-        cast["dirt_top"].append(Dirt(constants.DIRT_TOP))
-        cast["dirt_top"][1].center_x = cast["dirt_top"][0].center_x + constants.MAX_X
-        cast["dirt_top"][1].center_y = cast["dirt_top"][0].center_y
-        cast["dirt_bottom"].append(Dirt(constants.DIRT_BOTTOM))
-        cast["dirt_bottom"][1].center_x = cast["dirt_bottom"][0].center_x + constants.MAX_X
-        cast["dirt_bottom"][1].center_y = cast["dirt_bottom"][0].center_y
-
-    def _handle_car_collision(self,car,dirt):
-        return car.collides_with_sprite(dirt)
+    def _handle_car_collision(self,car,the_object):
+        return car.collides_with_sprite(the_object)

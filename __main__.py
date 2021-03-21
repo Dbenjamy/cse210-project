@@ -39,6 +39,7 @@ def main():
     cast["dirt_bottom"][1].center_x += constants.MAX_X
     cast["dirt_bottom"][1].center_y = -175
 
+    cast["obstacles"] = []
 
     # create the script {key: tag, value: list}
     script = {}
@@ -58,7 +59,7 @@ def main():
     # start the game
     window = arcade.Window(constants.MAX_X,constants.MAX_Y,constants.GAME_TITLE)
     menu = main_menu()
-    menu.set_parameters(cast, script, input_service)
+    menu.set_parameter(cast, script, input_service)
     start_view = menu
     window.show_view(start_view)
     arcade.run()

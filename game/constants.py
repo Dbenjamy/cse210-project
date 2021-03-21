@@ -11,8 +11,11 @@ CAR_X = 25
 
 CAR_MOVE_SCALE = 10
 
-DIRT_TOP = DIRROOT.joinpath("images/DIRT_IMAGES/top1.png")
-DIRT_BOTTOM = DIRROOT.joinpath("images/DIRT_IMAGES/bottom1.png")
+DIRT_TOP = DIRROOT.joinpath("images/dirt_top.png")
+DIRT_BOTTOM = DIRROOT.joinpath("images/dirt_bottom.png")
+OBSTACLE_ONE = DIRROOT.joinpath("images/barrier.png")
+OBSTACLES_LIST = []
+OBSTACLES_LIST.append(DIRROOT.joinpath("images/barrier.png"))
 
 GAME_TITLE = "RIP PAUL WALKER"
 CAR_IMAGE = DIRROOT.joinpath("images/paddle-0.png")

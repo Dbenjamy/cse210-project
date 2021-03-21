@@ -32,6 +32,13 @@ class DrawActorsAction(Action):
 
         self._output_service.draw_actors(cast["dirt_top"])
         self._output_service.draw_actors(cast["dirt_bottom"])
+
+        try:
+            self._output_service.draw_actor(cast["obstacles"][0])
+        except IndexError:
+            pass
+
+
         self._output_service.draw_actor(cast["car"][0])
 
         self._output_service.flush_buffer()
