@@ -8,6 +8,7 @@ from game.move_actors_action import MoveActorsAction
 from game.arcade_input_service import ArcadeInputService
 from game.arcade_output_service import ArcadeOutputService
 from game.menu import main_menu
+from game.newtimer import Timer
 
 from game.car import Car
 from game.dirt import Dirt
