@@ -1,1 +1,1 @@
-Authors: Ben Davis, Tyler Shellman, Robbie Swanson
+Authors: Ben Davis, Tyler Shellman, Robbie Swanson, Moses Diaz
