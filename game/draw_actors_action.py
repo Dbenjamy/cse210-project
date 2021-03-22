@@ -39,6 +39,11 @@ class DrawActorsAction(Action):
             self._output_service.draw_actor(cast["obstacles"][0])
         except IndexError:
             pass
+        
+        try:
+            self._output_service.draw_actor(cast["FINISH_LINE"][0])
+        except IndexError:
+            pass
 
 
         self._output_service.draw_actor(cast["car"][0])
