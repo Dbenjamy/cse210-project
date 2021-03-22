@@ -20,6 +20,7 @@ class DrawActorsAction(Action):
             _output_service (OutputService): An instance of OutputService.
         """
         self._output_service = output_service
+        self.timer = Timer()
 
     def execute(self, cast):
         """Executes the action using the given actors.
@@ -40,6 +41,8 @@ class DrawActorsAction(Action):
 
 
         self._output_service.draw_actor(cast["car"][0])
+        
+        self._output_service.timer(self.timer.output)
 
         self._output_service.flush_buffer()
 
