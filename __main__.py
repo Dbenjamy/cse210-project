@@ -41,6 +41,8 @@ def main():
     cast["dirt_bottom"][1].center_y = -175
 
     cast["obstacles"] = []
+    
+    cast["FINISH_LINE"] = []
 
     # create the script {key: tag, value: list}
     script = {}
