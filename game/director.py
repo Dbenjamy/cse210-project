@@ -11,6 +11,8 @@ class Director(arcade.View):
         self._cast = cast
         self._script = script
         self._input_service = input_service
+        self.total_time = 0.0
+        self.timer = Timer()
         self.slow_music = None
         self._sound_dictionary = {'engine':':resources:music/funkyrobot.mp3','slow_engine':':resources:sounds/gameover2.wav'}
 
@@ -21,6 +23,8 @@ class Director(arcade.View):
 
     def on_update(self, delta_time):
         self._cue_action("update")
+        self.total_time += delta_time
+        self.timer.timer_draw(self.total_time)
 
     def on_draw(self):
         self._cue_action("output")
