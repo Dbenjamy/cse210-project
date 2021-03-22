@@ -4,19 +4,10 @@ from random import choice as choice
 import arcade
 
 class Obstacles(arcade.Sprite):
-    def __init__(self,x_coordinate=None,y_coordinate=None):
+    def __init__(self):
 
         super().__init__(choice(constants.OBSTACLES_LIST))
-        if x_coordinate != None:
-            self.center_x = x_coordinate
-        else:
-            self.center_x = int(constants.MAX_X/2)
-        
-        if y_coordinate != None:
-            self.center_y = y_coordinate
-        else:
-            self.center_y = int(constants.MAX_Y/2)
+        self.center_x = int(constants.MAX_X + 20)
+        self.center_y = choice(range(int(constants.MAX_Y * 0.25),int(constants.MAX_Y * 0.75)))
         self.change_x = -5
-
-    def add_obstacle(self,obstacles):
-        obstacles.append(Obstacles)
+        
