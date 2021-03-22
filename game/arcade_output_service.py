@@ -47,3 +47,7 @@ class ArcadeOutputService:
     def flush_buffer(self):
         """Renders the screen.""" 
         pass
+    
+    def timer(self, output):
+
+        arcade.draw_text('Timer:', 550, 550, arcade.color.BLACK, 30)
