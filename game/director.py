@@ -1,6 +1,8 @@
 import arcade
 import time
 from game import constants
+from game.newtimer import Timer
+import datetime
 
 class Director(arcade.View):
     def __init__(self, cast, script, input_service):
