@@ -14,6 +14,7 @@ CAR_MOVE_SCALE = 10
 DIRT_TOP = DIRROOT.joinpath("images/dirt_top.png")
 DIRT_BOTTOM = DIRROOT.joinpath("images/dirt_bottom.png")
 OBSTACLE_ONE = DIRROOT.joinpath("images/barrier.png")
+FINISH_LINE = DIRROOT.joinpath("images/finish-line.png")
 OBSTACLES_LIST = []
 OBSTACLES_LIST.append(DIRROOT.joinpath("images/barrier.png"))
 
