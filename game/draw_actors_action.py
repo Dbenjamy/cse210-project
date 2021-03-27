@@ -36,7 +36,7 @@ class DrawActorsAction(Action):
         self._output_service.draw_actors(cast["dirt_bottom"])
 
         try:
-            self._output_service.draw_actor(cast["obstacles"][0])
+            self._output_service.draw_actors(cast["obstacles"])
         except IndexError:
             pass
         
