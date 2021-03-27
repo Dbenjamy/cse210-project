@@ -10,7 +10,7 @@ MAX_Y = 600
 CAR_X = 25
 
 CAR_MOVE_SCALE = 10
-
+OBSTACLE_INTERVAL = 200
 DIRT_TOP = DIRROOT.joinpath("images/dirt_top.png")
 DIRT_BOTTOM = DIRROOT.joinpath("images/dirt_bottom.png")
 OBSTACLE_ONE = DIRROOT.joinpath("images/barrier.png")
