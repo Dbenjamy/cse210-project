@@ -2,6 +2,7 @@ import random
 from game import constants
 from game.action import Action
 from game.dirt import Dirt
+from game.obstacles import Obstacles
 
 class HandleCollisionsAction(Action):
     """A code template for handling collisions. The responsibility of this class of objects is to update the game state when actors collide.
@@ -9,7 +10,10 @@ class HandleCollisionsAction(Action):
     Stereotype:
         Controller
     """
-    
+    def __init__(self):
+        self.counter = int(0)
+
+
     def execute(self, cast):
         """Executes the action using the given actors.
 
@@ -43,16 +47,33 @@ class HandleCollisionsAction(Action):
                 go_slow = True
                 break
 
+        for obstacle in cast["obstacles"]:
+            if go_slow:
+                break
+            if self._handle_car_collision(car, obstacle):
+                go_slow = True
+
         if go_slow:
             for dirt in cast["dirt_top"]:
                 dirt.change_x = -1
             for dirt in cast["dirt_bottom"]:
                 dirt.change_x = -1
+            for obstacle in cast["obstacles"]:
+                obstacle.change_x = -1
+            
+            self.counter += 1
         elif not go_slow:
             for dirt in cast["dirt_top"]:
                 dirt.change_x = -5
             for dirt in cast["dirt_bottom"]:
                 dirt.change_x = -5
+            for obstacle in cast["obstacles"]:
+                obstacle.change_x = -5
+            self.counter += 5
+
+        if self.counter > constants.OBSTACLE_INTERVAL:
+            cast["obstacles"].append(Obstacles())
+            self.counter = 0
 
     def _handle_car_collision(self,car,the_object):
         return car.collides_with_sprite(the_object)
