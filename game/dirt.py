@@ -21,12 +21,13 @@ class Dirt(arcade.Sprite):
         the_cast["dirt_bottom"].append(Dirt(constants.DIRT_BOTTOM))
         the_cast["dirt_bottom"][1].center_x = the_cast["dirt_bottom"][0].center_x + constants.MAX_X
         the_cast["dirt_bottom"][1].center_y = the_cast["dirt_bottom"][0].center_y
-      
-    def show_finish(self,cast):
-        # if x number of tracks then call finish line
         if self.counter == 3:
-            cast["FINISH_LINE"].append(Dirt(constants.FINISH_LINE))
-            cast["FINISH_LINE"][0].center_y = constants.MAX_Y / 2
-            cast["FINISH_LINE"][0].center_x = constants.MAX_X + 180
+            self.show_finish(the_cast)      
+
+    def show_finish(self,cast):
+
+        cast["FINISH_LINE"].append(Dirt(constants.FINISH_LINE))
+        cast["FINISH_LINE"][0].center_y = constants.MAX_Y / 2
+        cast["FINISH_LINE"][0].center_x = constants.MAX_X + 180
 
         self.finished = True
