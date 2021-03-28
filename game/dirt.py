@@ -32,7 +32,7 @@ class Dirt(arcade.Sprite):
 
         if Dirt.counter > 10:
     
-            print(Dirt.counter)
+            #print(Dirt.counter)
 
             arcade.close_window()
 
