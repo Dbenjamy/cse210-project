@@ -7,7 +7,7 @@ from game.handle_collisions_action import HandleCollisionsAction
 from game.move_actors_action import MoveActorsAction
 from game.arcade_input_service import ArcadeInputService
 from game.arcade_output_service import ArcadeOutputService
-from game.menu import main_menu
+from game.menu import Main_Menu
 from game.newtimer import Timer
 
 from game.car import Car
@@ -61,7 +61,7 @@ def main():
 
     # start the game
     window = arcade.Window(constants.MAX_X,constants.MAX_Y,constants.GAME_TITLE)
-    menu = main_menu()
+    menu = Main_Menu()
     menu.set_parameter(cast, script, input_service)
     start_view = menu
     window.show_view(start_view)

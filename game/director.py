@@ -20,13 +20,34 @@ class Director(arcade.View):
 
     def setup(self):
         arcade.set_background_color(arcade.color.BLACK)
+        self.set_pause(False)
         self.play_song()
 
+    def set_pause(self, pause):
+        self.game_paused = pause
 
     def on_update(self, delta_time):
-        self._cue_action("update")
-        self.total_time += delta_time
-        self.timer.timer_draw(self.total_time)
+        from game.arcade_input_service import ArcadeInputService
+        pause_key = ArcadeInputService()
+        pause_key.set_parameter(self._cast, self._script, self._input_service)
+        pause_key.get_view()
+
+        if self.game_paused == False:
+            self._cue_action("update")
+            self.total_time += delta_time
+            self.timer.timer_draw(self.total_time)
+        if self.game_paused == True:
+            from game.pause import Pause_Menu
+            pause_screen = Pause_Menu()
+            pause_screen.set_parameter(self._cast, self._script, self._input_service)
+            print("Made it this far")
+            self.window.show_view(pause_screen)
+            self.set_pause(False)
+        else:
+            self._cue_action("update")
+            self.total_time += delta_time
+            self.timer.timer_draw(self.total_time)
+            
 
     def on_draw(self):
         self._cue_action("output")
