@@ -1,6 +1,5 @@
 import arcade
 from game import constants
-from game.control_veiws import Views
 
 class Main_Menu(arcade.View):
     def set_parameter(self, cast, script, input_service):
