@@ -32,7 +32,3 @@ class Main_Menu(arcade.View):
         self.window.show_view(game_view)
         self.start_sound = arcade.load_sound(":resources:sounds/coin1.wav")
         arcade.play_sound(self.start_sound)
-
-
-
-    
