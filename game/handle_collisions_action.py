@@ -60,6 +60,8 @@ class HandleCollisionsAction(Action):
                 dirt.change_x = -1
             for obstacle in cast["obstacles"]:
                 obstacle.change_x = -1
+            for item in cast["FINISH_LINE"]:
+                item.change_x = -1
             
             self.counter += 1
         elif not go_slow:
@@ -69,6 +71,8 @@ class HandleCollisionsAction(Action):
                 dirt.change_x = -5
             for obstacle in cast["obstacles"]:
                 obstacle.change_x = -5
+            for item in cast["FINISH_LINE"]:
+                item.change_x = -5
             self.counter += 5
 
         if self.counter > constants.OBSTACLE_INTERVAL:
