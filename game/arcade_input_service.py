@@ -24,10 +24,10 @@ class ArcadeInputService:
     def remove_key(self, key, modifiers):
         self._keys.remove(key)
 
-    def get_view(self):
-        print("Good", self._keys)
-        if arcade.key.P in self._keys:
-            return "P"
+    # def get_view(self):
+    #     print("Good", self._keys)
+    #     if arcade.key.P in self._keys:
+    #         return "P"
 
     def get_direction(self):
         """Gets the selected direction for the given player.
@@ -51,9 +51,9 @@ class ArcadeInputService:
         elif arcade.key.DOWN in self._keys:
             y = -1
 
-        if arcade.key.P in self._keys:
-            pause_key = self.get_view()
-            return pause_key
-        else:
-            velocity = Point(x, y)
-            return velocity
+        # if arcade.key.P in self._keys:
+        #     pause_key = self.get_view()
+        #     return pause_key
+        # else:
+        velocity = Point(x, y)
+        return velocity

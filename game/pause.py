@@ -9,6 +9,7 @@ class Pause_Menu(arcade.View):
         self._input_service = input_service
 
     def on_draw(self):
+        print("Y")
         arcade.set_background_color(arcade.csscolor.ROYAL_BLUE)
 
         # Reset the viewport, necessary if we have a scrolling game and we need
@@ -23,22 +24,13 @@ class Pause_Menu(arcade.View):
         arcade.draw_text("Click to advance", constants.MAX_X / 2, constants.MAX_Y / 2-75,
                          arcade.color.WHITE, font_size=20, anchor_x="center")
 
-    # def pause(self, seconds, wait: 0):
-    #     """
-    #     Pause for the specified number of seconds. This is a convenience function that just calls time.sleep()
-
-    #     :param float seconds: Time interval to pause in seconds.
-    #     """
-    #     if wait == 0:
-    #         time.sleep(float(seconds))
-
     def on_mouse_press(self, _x, _y, _button, _modifiers):
         """ If the user presses the mouse button, start the game. """
         from game.director import Director
-        game_view = Director(self._cast, self._script, self._input_service)
-        # game_view.set_up()
-        # game_view.set_pause(False)
-        self.window.show_view(game_view)
+        self.game_view = Director(self._cast, self._script, self._input_service)
+        self.game_view.pause = False
+        # from game import constants
+        self.window.show_view(self.game_view)
         self.start_sound = arcade.load_sound(":resources:sounds/coin1.wav")
         arcade.play_sound(self.start_sound)
         
