@@ -17,6 +17,8 @@ class Director(arcade.View):
         self.timer = Timer()
         self.slow_music = None
         self._sound_dictionary = {'engine':':resources:music/funkyrobot.mp3','slow_engine':':resources:sounds/gameover2.wav'}
+        self.pause = False
+        self.continues = True
 
     def setup(self):
         arcade.set_background_color(arcade.color.BLACK)
@@ -25,28 +27,35 @@ class Director(arcade.View):
     def on_update(self, delta_time):
         from game.arcade_input_service import ArcadeInputService
         self.pause_key = ArcadeInputService()
-        key_pressed = self.pause_key.get_direction()
-        print(key_pressed)
 
-        if key_pressed == "P":
-            print("Y")
+        if self.pause:
+            self.continues = False
             from game.pause import Pause_Menu
             pause_screen = Pause_Menu()
             pause_screen.set_parameter(self._cast, self._script, self._input_service)
-            self.window.show_view(pause_screen)
-            # self.set_pause(False)
-        else:
+            if self.pause:
+                print("y")
+                self.pause = False
+                self.window.show_view(pause_screen)
+        if self.continues:
             print("Q")
             self._cue_action("update")
             self.total_time += delta_time
             self.timer.timer_draw(self.total_time)
 
     def on_draw(self):
-        self._cue_action("output")
+        if not(self.continues):
+            return
+        else:
+            self._cue_action("output")
 
     def on_key_press(self, symbol, modifiers):
         self._input_service.set_key(symbol, modifiers)
-        self._cue_action("input")
+        print(symbol)
+        if symbol == 112:
+            self.pause = True
+        else:
+            self._cue_action("input")
 
     def on_key_release(self, symbol, modifiers):
         self._input_service.remove_key(symbol, modifiers)
@@ -57,9 +66,12 @@ class Director(arcade.View):
         
         Args:
             tag (string): The given tag.
-        """ 
-        for action in self._script[tag]:
-            action.execute(self._cast)
+        """
+        if not(self.continues):
+            return
+        else:
+            for action in self._script[tag]:
+                action.execute(self._cast)
             
     def play_song(self):
         """ Play the song. """
