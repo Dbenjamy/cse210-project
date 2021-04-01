@@ -80,4 +80,4 @@ class Director(arcade.View):
         if self.slow_music:
             self.slow_music.stop()
         self.slow_music = arcade.Sound(self._sound_dictionary['engine'], streaming = True)
-        self.slow_music.play(volume=1)
+        self.slow_music.play(volume=.1)
