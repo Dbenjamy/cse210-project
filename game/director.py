@@ -50,16 +50,22 @@ class Director(arcade.View):
             self._cue_action("output")
 
     def on_key_press(self, symbol, modifiers):
-        self._input_service.set_key(symbol, modifiers)
-        print(symbol)
-        if symbol == 112:
-            self.pause = True
+        if not(self.continues):
+            return
         else:
-            self._cue_action("input")
+            self._input_service.set_key(symbol, modifiers)
+            print(symbol)
+            if symbol == 112:
+                self.pause = True
+            else:
+                self._cue_action("input")
 
     def on_key_release(self, symbol, modifiers):
-        self._input_service.remove_key(symbol, modifiers)
-        self._cue_action("input")
+        if not(self.continues):
+            return
+        else:
+            self._input_service.remove_key(symbol, modifiers)
+            self._cue_action("input")
 
     def _cue_action(self, tag):
         """Executes the actions with the given tag.
