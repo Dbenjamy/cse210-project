@@ -41,6 +41,7 @@ class Pause_Menu(arcade.View):
         # self.game_view.pause = False
         # from game import constants
         self.window.show_view(self.game_view)
+        arcade.set_background_color(arcade.color.BLACK)
         self.start_sound = arcade.load_sound(":resources:sounds/coin1.wav")
         arcade.play_sound(self.start_sound)
         
