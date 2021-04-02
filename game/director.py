@@ -28,10 +28,9 @@ class Director(arcade.View):
 
         if len(self._cast['FINISH_LINE']) > 0:
             if self._cast['car'][0].collides_with_sprite(self._cast["FINISH_LINE"][0]):
-                from game.endscreen import end_menu
-                game_view = end_menu(self._cast, self._script, self._input_service)
-                game_view.setup()
-                self.window.show_view(game_view)
+                from game.endscreen import End_Menu
+                end_view = End_Menu(self)
+                self.window.show_view(end_view)
 
         
         self._cue_action("update")
@@ -39,17 +38,11 @@ class Director(arcade.View):
         self.timer.timer_draw(self.total_time)
 
     def on_draw(self):
-        # if not(self.continues):
-        #     return
-        # else:
         self._cue_action("output")
 
     def on_key_press(self, symbol, modifiers):
-        # if not(self.continues):
-        #     return
-        # else:
         self._input_service.set_key(symbol, modifiers)
-            # print(symbol)
+
         if symbol == 112:
             from game.pause import Pause_Menu
             pause = Pause_Menu(self)
@@ -58,9 +51,6 @@ class Director(arcade.View):
             self._cue_action("input")
 
     def on_key_release(self, symbol, modifiers):
-        # if not(self.continues):
-        #     return
-        # else:
         self._input_service.remove_key(symbol, modifiers)
         self._cue_action("input")
 
@@ -70,9 +60,6 @@ class Director(arcade.View):
         Args:
             tag (string): The given tag.
         """
-        # if not(self.continues):
-            # return
-        # else:
         for action in self._script[tag]:
             action.execute(self._cast)
             

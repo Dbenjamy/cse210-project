@@ -31,13 +31,8 @@ class Dirt(arcade.Sprite):
             the_cast["FINISH_LINE"][0].center_x = constants.MAX_X + 100
 
         if Dirt.counter > 10:
-    
-            #print(Dirt.counter)
-
             arcade.close_window()
-
-
-
+            
         self.finished = True
       
 
