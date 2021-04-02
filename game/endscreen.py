@@ -1,11 +1,11 @@
 import arcade
 from game import constants
 
-class end_menu(arcade.View):
-    def set_parameter(self, cast, script, input_service):
-        self._cast = cast
-        self._script = script
-        self._input_service = input_service
+class End_Menu(arcade.View):
+
+    def __init__(self, view):
+        super().__init__()
+        self.view = view
     
     def on_show(self):
         """ This is run once when we switch to this view """
@@ -24,6 +24,7 @@ class end_menu(arcade.View):
                          arcade.color.WHITE, font_size=20, anchor_x="center")
 
     def on_mouse_press(self, _x, _y, _button, _modifiers):
+        quit()
         """ If the user presses the mouse button, end the game. """
         
 

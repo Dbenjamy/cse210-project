@@ -29,10 +29,6 @@ class ArcadeOutputService:
         Args:
             actor (Actor): The actor to render.
         """
-        # It would be nice to get the image information from the Actor here and
-        # then pass it along to the arcade service methods, but that doesn't jive
-        # with the `Sprite` model very well.
-
         actor.draw()
 
     def draw_actors(self, actors):

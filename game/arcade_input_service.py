@@ -24,11 +24,6 @@ class ArcadeInputService:
     def remove_key(self, key, modifiers):
         self._keys.remove(key)
 
-    # def get_view(self):
-    #     print("Good", self._keys)
-    #     if arcade.key.P in self._keys:
-    #         return "P"
-
     def get_direction(self):
         """Gets the selected direction for the given player.
 
@@ -40,20 +35,11 @@ class ArcadeInputService:
 
         # EDIT: Car will not move forward and backward. Removed funcionality for
         # letting user change x value
-        
-        #if arcade.key.LEFT in self._keys:
-            #x = -1
-        #elif arcade.key.RIGHT in self._keys:
-            #x = 1
 
         if arcade.key.UP in self._keys:
             y = 1
         elif arcade.key.DOWN in self._keys:
             y = -1
-
-        # if arcade.key.P in self._keys:
-        #     pause_key = self.get_view()
-        #     return pause_key
-        # else:
+            
         velocity = Point(x, y)
         return velocity
