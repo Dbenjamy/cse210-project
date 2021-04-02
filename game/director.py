@@ -1,5 +1,6 @@
 import arcade
 import time
+from pathlib import Path
 from game import constants
 from game.newtimer import Timer
 import datetime
@@ -16,29 +17,23 @@ class Director(arcade.View):
         self.total_time = 0.0
         self.timer = Timer()
         self.slow_music = None
-        self._sound_dictionary = {'engine':':resources:music/funkyrobot.mp3','slow_engine':':resources:sounds/gameover2.wav'}
-        # self.pause = False
-        # self.continues = True
+        self.fileDir = Path(__file__).parent.parent
+        self._sound_dictionary = {'engine':self.fileDir/'sounds/car.mp3','slow_engine':':resources:sounds/gameover2.wav'}
 
     def setup(self):
         arcade.set_background_color(arcade.color.BLACK)
         self.play_song()
 
     def on_update(self, delta_time):
-        # from game.arcade_input_service import ArcadeInputService
-        # self.pause_key = ArcadeInputService()
 
-        # if self.pause:
-        #     self.continues = False
-        #     from game.pause import Pause_Menu
-        #     pause_screen = Pause_Menu()
-        #     pause_screen.set_parameter(self._cast, self._script, self._input_service)
-        #     if self.pause:
-        #         print("y")
-        #         self.pause = False
-        #         self.window.show_view(pause_screen)
-        # if self.continues:
-        print("Q")
+        if len(self._cast['FINISH_LINE']) > 0:
+            if self._cast['car'][0].collides_with_sprite(self._cast["FINISH_LINE"][0]):
+                from game.endscreen import end_menu
+                game_view = end_menu(self._cast, self._script, self._input_service)
+                game_view.setup()
+                self.window.show_view(game_view)
+
+        
         self._cue_action("update")
         self.total_time += delta_time
         self.timer.timer_draw(self.total_time)
@@ -88,4 +83,4 @@ class Director(arcade.View):
         if self.slow_music:
             self.slow_music.stop()
         self.slow_music = arcade.Sound(self._sound_dictionary['engine'], streaming = True)
-        self.slow_music.play(volume=1)
+        self.slow_music.play(volume=.3)
