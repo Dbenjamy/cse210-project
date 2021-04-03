@@ -7,12 +7,14 @@ import arcade
 import datetime
 
 
-class Timer():
+class Timer(arcade.Sprite):
     """
     Main application class.
     """
     def __init__(self):
         self.output = str
+        super().__init__()
+        
 
     def timer_draw(self, total_time):
         """ Use this function to draw everything to the screen. """
@@ -25,7 +27,4 @@ class Timer():
 
         # Figure out our output
         self.output = f"Time: {minutes:02d}:{seconds:02d}"
-
-
-#window = Timer()
-#window.setup()
+        print(self.output)
