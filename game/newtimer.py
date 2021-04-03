@@ -27,4 +27,4 @@ class Timer(arcade.Sprite):
 
         # Figure out our output
         self.output = f"Time: {minutes:02d}:{seconds:02d}"
-        print(self.output)
+        #print(self.output)
