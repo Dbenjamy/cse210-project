@@ -35,12 +35,12 @@ class Director(arcade.View):
                 self.window.show_view(end_view)
                 
                 
-            if self.continues:
-                #print("Q")
-                self._cue_action("update")
-                print(self.total_time, delta_time)
-                self.total_time += delta_time
-                self.timer.timer_draw(self.total_time)
+        if self.continues:
+            #print("Q")
+            self._cue_action("update")
+            print(self.total_time, delta_time)
+            self.total_time += delta_time
+            self.timer.timer_draw(self.total_time)
 
     def on_draw(self):
         self._cue_action("output")
