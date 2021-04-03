@@ -45,5 +45,5 @@ class ArcadeOutputService:
         pass
     
     def timer(self, output):
+        arcade.draw_text(f'{str(output)}', 550, 550, arcade.color.BLACK, 30)
 
-        arcade.draw_text('Timer:', 550, 550, arcade.color.BLACK, 30)
