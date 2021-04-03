@@ -19,4 +19,4 @@ OBSTACLES_LIST = []
 OBSTACLES_LIST.append(DIRROOT.joinpath("images/barrier.png"))
 
 GAME_TITLE = "RIP PAUL WALKER"
-CAR_IMAGE = DIRROOT.joinpath("images/paddle-0.png")
+CAR_IMAGE = DIRROOT.joinpath("images/racecar.png")
