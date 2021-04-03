@@ -38,7 +38,7 @@ class Director(arcade.View):
         if self.continues:
             #print("Q")
             self._cue_action("update")
-            print(self.total_time, delta_time)
+            #print(self.total_time, delta_time)
             self.total_time += delta_time
             self.timer.timer_draw(self.total_time)
 
